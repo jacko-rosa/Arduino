@@ -1,0 +1,60 @@
+//PIN_INPUT
+int chave0 = 2;
+int chave1 = 1;
+
+//PIN_OUTPUT
+const int led1 = 13;
+
+//STATUS
+bool sChave0 = false;
+bool sChave1 = false;
+
+bool sLed1 = false;
+
+//LAST STATE
+bool ltsChave0 = false;
+bool ltsChave1 = false;
+
+void setup(){
+	//INPUT
+	pinMode(chave0, INPUT);
+	pinMode(chave1, INPUT);
+	//OUTPUT
+	pinMode(led1,OUTPUT);
+}
+
+void lerStatus(){
+	sChave0 = digitalRead(chave0);
+    sChave1 = digitalRead(chave1);
+	sLed1 = digitalRead(led1);
+}
+
+void alterarEstado(bool statusChave, bool lastStatusChave,bool statusOut, int pinOut){
+	if(statusChave != lastStatusChave){
+      if(statusOut == false){
+			digitalWrite(pinOut,HIGH);
+      }else{
+      	digitalWrite(pinOut,LOW);
+      }
+      lastStatusChave = !lastStatusChave;
+	}
+}
+ 
+void loop()
+{
+	lerStatus();
+  if(sChave0 != ltsChave0 ||sChave1 != ltsChave1){
+    if(sChave0 != ltsChave0){
+      ltsChave0 = !ltsChave0;
+    }else{
+      ltsChave1 = !ltsChave1;
+    }
+    if(sLed1 == false){
+			digitalWrite(led1,HIGH);
+      }else{
+      	digitalWrite(led1,LOW);
+      }
+	}
+  	
+	
+}

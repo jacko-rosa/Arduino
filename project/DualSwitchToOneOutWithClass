@@ -1,0 +1,65 @@
+//classes
+  class Chave {
+	public:
+      Chave(int);
+      int pin;
+      bool state = false;
+      bool lastState = false;
+  };
+  Chave::Chave(int a) {
+      pin = a;
+  }
+//---||---
+  class Saida{
+    public:
+      Saida(int);
+      int pin;
+      bool state = false;
+  };
+  Saida::Saida(int a){
+      pin = a;
+}
+//---||---
+//METODOS
+void mudarEstadoDeSaida(Chave chave1, Chave chave2, Saida saida){
+	pinMode(chave1.pin, INPUT);
+	chave1.state = digitalRead(chave1.pin);
+	
+	pinMode(chave2.pin, INPUT);
+	chave2.state = digitalRead(chave2.pin);
+	
+	pinMode(saida.pin, OUTPUT);
+	saida.state = digitalRead(saida.pin);
+	
+	
+  if(chave1.state != chave1.lastState ||chave2.state != chave2.lastState){
+      if(sChave0 != ltsChave0){
+        ltsChave0 = !ltsChave0;
+      }else{
+        ltsChave1 = !ltsChave1;
+      }
+      if(sLed1 == false){
+              digitalWrite(led1,HIGH);
+        }else{
+          digitalWrite(led1,LOW);
+        }
+      }
+}
+
+void setup(){
+	Chave chave1(1);
+  	Chave chave2(2);
+  	Saida led1(13);
+  
+  	pinMode(chave1.pin,INPUT);
+    pinMode(chave2.pin,INPUT);
+    pinMode(led1.pin,OUTPUT);
+  
+	
+}
+
+ 
+void loop()
+{
+	
+}

@@ -1,0 +1,38 @@
+//PIN_INPUT
+int chave0 = 2;
+
+//PIN_OUTPUT
+const int led1 = 13;
+
+//STATUS
+bool sChave0 = false;
+bool sChave1 = false;
+
+bool sLed1 = false;
+
+//LAST STATE
+bool ltsChave0 = false;
+bool ltsChave1 = false;
+
+class Chave {
+  public:
+    Chave(int);
+  	int pin;
+  	bool state = false;
+  	bool lastState = false;
+};
+
+Chave::Chave(int a) {
+    pin = a;
+}
+
+void setup(){
+	Chave r (2);
+	
+}
+
+ 
+void loop()
+{
+	
+}
